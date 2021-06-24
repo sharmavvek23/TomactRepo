@@ -20,7 +20,7 @@ stage("Package") {
 }
 stage("Ansible deploy") {
      steps {
-      sh "ansible -i /var/lib/jenkins/my_targets /var/lib/jenkins/app-container.yml all"   
+      sh "ansible -i /var/lib/jenkins/my_targets /var/lib/jenkins/app-container.yml"   
      }
 }
 
