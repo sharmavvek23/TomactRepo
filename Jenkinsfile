@@ -18,21 +18,12 @@ stage("Package") {
           sh "/usr/bin/mvn package"
      }
 }
-stage("Docker build") {
+stage("Ansible deploy") {
      steps {
-      
-          sh "docker build -t deepak_tomcat ."
+      sh "ansible -i /var/lib/jenkins/my_targets /var/lib/jenkins/app-container.yml"   
      }
 }
 
-stage("Deploy to staging") {
-     steps {
-          
-          sh "docker stop \$(docker ps -qa)"
-          sh "docker rm \$(docker ps -qa)"
-          sh "docker run -d -it -v /var/lib/jenkins/workspace/DockerwarPipeline/target/:/usr/local/tomcat/webapps/ -p 8090:8080 --name Testtomcat deepak_tomcat"
-     }
-}
 
      }
   post {
