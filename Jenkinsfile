@@ -20,7 +20,7 @@ stage("Package") {
 }
 stage("Ansible deploy") {
      steps {
-      sh "ansible -i my_targets app-container.yml"   
+      sh "ansible-playbook -i /var/lib/jenkins/my_targets /var/lib/jenkins/app-container.yml"   
      }
 }
 
